@@ -27,3 +27,9 @@ yarn-error.log*
 db.sqlite3
 Groei_lekker.twb
 /migrations
+
+docker-compose.yml
+Dockerfile
+
+requirements.txt
+compose-dev.yml

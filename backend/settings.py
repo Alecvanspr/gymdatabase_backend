@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    'hammerhead-app-lk96p.ondigitalocean.app',
+    'workoutwinst.nl'
 ]
 
 
@@ -110,13 +112,17 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
-     'http://localhost:8000'
+     'http://localhost:3000',
+     'http://localhost:8000',
+     'https://hammerhead-app-lk96p.ondigitalocean.app/',
+     'http://workoutwinst.nl/'
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
+     'https://hammerhead-app-lk96p.ondigitalocean.app/',
+     'http://workoutwinst.nl/'
 ]
 
 # Internationalization
