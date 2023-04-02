@@ -10,14 +10,13 @@ class MuscleGroup(models.Model):
     def __str__(self):
         return str(self.name)
 
-class Trainday(models.Model):
+class Training(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     muscle_groups = models.ManyToManyField(MuscleGroup, null=True, blank=True)
-    Exercises = models.ManyToManyField("Exercise", null=True, blank=True)
+    exercises = models.ManyToManyField("Exercise", null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    
     def __str__(self):
         return str(self.name)
 
@@ -41,7 +40,7 @@ class Session(models.Model):
     end_time = models.TimeField(null=True, blank=True)
     preworkout = models.BooleanField(default=False)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
-    trainday = models.ForeignKey(Trainday,on_delete=models.CASCADE, null=True, blank=True)
+    training = models.ForeignKey(Training,on_delete=models.CASCADE, null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -59,16 +58,17 @@ class Equipment(models.Model):
 
 class Exercise(models.Model):
     muscle_group = models.ManyToManyField(MuscleGroup, null=True, blank=True)
-    equipment = models.ManyToManyField(Equipment, null=True, blank=True)
+    equipment = models.ForeignKey(Equipment, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    help_video = models.CharField(max_length=100, null=True, blank=True)
+    image = models.CharField(max_length=300, null=True, blank=True)
+    help_video = models.CharField(max_length=300, null=True, blank=True)
     cardio = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
-        return str(self.name) +" - "+str(self.equipment.first())
+        return str(self.name) +" - "+str(self.equipment.name)
 
 class Set(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
@@ -107,6 +107,7 @@ class PersonalInformation(models.Model):
     gender = models.CharField(max_length=100)
     birthdate = models.DateField()
     height = models.FloatField()
+    createad_at = models.DateTimeField(auto_now=True, null=True)
 
     def get_weight(self):
         return Weight.objects.filter(user=self.user).last()

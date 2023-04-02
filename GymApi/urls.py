@@ -1,5 +1,5 @@
 from GymApi import views
-from GymApi.views import set, trainday, location, session, equipment, exercise, set, muscleGroup ,user
+from GymApi.views import set, location, session, equipment, exercise, set, muscleGroup, training ,user
 from django.urls import path
 
 urlpatterns = [
@@ -22,9 +22,9 @@ urlpatterns = [
     path('exercises/', exercise.ExerciseViewSet.as_view({'get': 'list'})),
 
     #TrainDay
-    path('trainday/', trainday.TraindayViewSet.as_view({'get': 'list'})),
-    path('trainday/<int:id>/', trainday.TraindayViewSet.as_view({'get': 'get'})),
-    path('trainday/', trainday.TraindayViewSet.as_view({'post': 'create'})),
+    path('trainings/', training.TraindayViewSet.as_view({'get': 'list'})),
+    path('training/<int:id>/', training.TraindayViewSet.as_view({'get': 'get'})),
+    path('training/', training.TraindayViewSet.as_view({'post': 'create'})),
 
     #Equipment
     path('equipment/', equipment.EquipmentViewSet.as_view({'get': 'list'})),

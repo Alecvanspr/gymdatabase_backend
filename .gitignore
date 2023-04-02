@@ -32,3 +32,4 @@ docker-compose.yml
 Dockerfile
 
 compose-dev.yml
+*.sqlite3

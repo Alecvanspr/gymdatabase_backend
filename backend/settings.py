@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'GymApi',
     'rest_framework',
     'rest_framework.authtoken',
-    'GymApi',
 ]
 
 MIDDLEWARE = [

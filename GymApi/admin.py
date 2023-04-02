@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Session, Set, Exercise , Location, MuscleGroup, Trainday, Equipment
+from .models import Session, Set, Exercise , Location, MuscleGroup, Training, Equipment
 
 # Customized filters
 class SelectMuscleGroup(admin.SimpleListFilter):
@@ -68,7 +68,7 @@ class EquipmentAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Location, LocationAdmin)
-admin.site.register(Trainday, TrainDayAdmin)
+admin.site.register(Training, TrainDayAdmin)
 admin.site.register(MuscleGroup,MuscleGroupAdmin)
 admin.site.register(Exercise, ExerciseAdmin)
 admin.site.register(Session, SessionAdmin)

@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from ..models import PersonalInformation, Weight
 
 @api_view(['POST'])
 def login(request):
@@ -32,4 +33,12 @@ def register(request):
     else:
         user = User.objects.create(username=username, email=email, password=password)
         user.save()
-        return Response({'success': 'User created successfully'}, status=status.HTTP_201_CREATED)
+        birthdate = request.data.get('birthDate')
+        gender = request.data.get("gender")
+        height = request.data.get('height')
+        weight = request.data.get('weight')
+        personalinformation = PersonalInformation.objects.create(user=user,birthdate=birthdate, gender=gender, height=height)
+        personalinformation.save()
+        weight = Weight.objects.create(user=user, weight=weight)
+        weight.save()
+        return Response({'success': 'User created successfully','userid':user.id}, status=status.HTTP_201_CREATED)

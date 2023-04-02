@@ -1,14 +1,14 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from ..models import Trainday
-from ..serializers.Trainday import TraindaySerializer
+from ..models import Training
+from ..serializers.training import TrainingSerializer
 from django.contrib.auth.models import User
 
 class TraindayViewSet(viewsets.ModelViewSet):
-    serializer_class = TraindaySerializer
+    serializer_class = TrainingSerializer
 
     def get_queryset(self):
-        queryset = Trainday.objects.all()
+        queryset = Training.objects.all()
         train_day = self.request.query_params.get('train_day', None)
         if train_day is not None:
             queryset = queryset.filter(name=train_day)
@@ -23,10 +23,10 @@ class TraindayViewSet(viewsets.ModelViewSet):
 
     def get(self, request, id=None):
         if id is None:
-            train_day = Trainday.objects.all()
-            serializer = TraindaySerializer(train_day, many=True)
+            train_day = Training.objects.all()
+            serializer = TrainingSerializer(train_day, many=True)
             return Response(serializer.data)
         else:
-            train_day = Trainday.objects.get(id=id)
-            serializer = TraindaySerializer(train_day)
+            train_day = Training.objects.get(id=id)
+            serializer = TrainingSerializer(train_day)
             return Response(serializer.data)
