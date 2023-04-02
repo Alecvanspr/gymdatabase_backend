@@ -31,5 +31,4 @@ Groei_lekker.twb
 docker-compose.yml
 Dockerfile
 
-requirements.txt
 compose-dev.yml

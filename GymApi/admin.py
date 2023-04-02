@@ -16,6 +16,7 @@ class SelectMuscleGroup(admin.SimpleListFilter):
             ('Shoulders', ('Shoulders')),
         )
     
+    
     def queryset(self,request, queryset):
         if(self.value()):
             if(queryset.model.__name__=="MuscleGroup"):
